@@ -32,3 +32,9 @@ HTML5, CSS3 and vanilla JavaScript.
 ## How to run
 
 Open `index.html` in a browser.
+
+## Features
+
+- Purchase form with ticket type and quantity
+- Total price calculation
+- Table of registered orders
