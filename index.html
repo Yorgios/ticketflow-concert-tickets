@@ -1,31 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TicketFlow - Concert Tickets</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra tus Boletos</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>TicketFlow</h1>
-        <p>Concert Tickets sales</p>
-    </header>
 
-    <main>
-        <!-- Todo (Frontend, feature/ui): purchase form -->
-         <section id="purchase-section">
-            <h2>Buy Tickets</h2>
-         </section>
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#" class="logo">
+        <img src="logo2.jpg">
+        <span>TicketFlow</span>
+      </a>
 
-         <!-- Todo (Frontend, feature/ui): orders table -->
-         <section id="orders-section">
-            <h2>Orders</h2>
-         </section>
-    </main>
-    
-    <footer>
-        <p>Ethics Workshop final project</p>
-    </footer>
+      <nav aria-label="Navegación principal" class="nav-buttons">
+        <a href="#concerts-section" class="btn-nav">Días de conciertos</a>
+        <a href="#purchase-section" class="btn-nav">Comprar</a>
+        <a href="#cart-section" class="btn-nav">Tu carrito</a>
+        <a href="#orders-section" class="btn-nav btn-nav-primary">Tu pedido</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="concerts-section" aria-labelledby="concerts-heading">
+      <h2 id="concerts-heading">Días de Conciertos</h2>
+      <div class="concerts-grid">
+        <article class="concert-card">
+          <span class="concert-date">Viernes 15 Nov</span>
+          <h3>Noche de Rock & Indie</h3>
+          <p>Apertura de puertas: 18:00 hrs</p>
+        </article>
+        <article class="concert-card">
+          <span class="concert-date">Sábado 16 Nov</span>
+          <h3>Pop & Electrónica</h3>
+          <p>Apertura de puertas: 17:00 hrs</p>
+        </article>
+        <article class="concert-card">
+          <span class="concert-date">Domingo 17 Nov</span>
+          <h3>Clausura Sinfónica</h3>
+          <p>Apertura de puertas: 19:00 hrs</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Sección de Compra (Para Roberto con su javascript) -->
+    <section id="purchase-section" aria-labelledby="purchase-heading">
+      <h2 id="purchase-heading">Comprar Boletos</h2>
+      
+      <form id="purchase-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="fullName">Nombre completo</label>
+          <input type="text" id="fullName" name="fullName" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="age">Edad</label>
+            <input type="number" id="age" name="age" min="1" max="120" required>
+          </div>
+
+          <div class="form-group">
+            <label for="zipCode">Código postal</label>
+            <input type="text" id="zipCode" name="zipCode" required autocomplete="postal-code">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ticketType">Tipo de boleto</label>
+            <select id="ticketType" name="ticketType" required>
+              <option></option>
+              <option value="Economico">Económico</option>
+              <option value="general">General</option>
+              <option value="vip">VIP</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quantity">Cantidad</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+          </div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="insurance" name="insurance">
+          <label for="insurance">Cancellation insurance (opcional)</label>
+        </div>
+
+        <button type="submit" class="btn-submit">Comprar</button>
+      </form>
+    </section>
+
+    <section id="cart-section" aria-labelledby="cart-heading">
+      <h2 id="cart-heading">Tu Carrito</h2>
+      <div id="cart-items" class="empty-state">
+        <p>Aún no has agregado boletos a tu carrito.</p>
+      </div>
+    </section>
+
+    <!-- Sección de Pedidos (otra vez para Roberto) -->
+    <section id="orders-section" aria-labelledby="orders-heading">
+      <h2 id="orders-heading">Tu Pedido</h2>
+      
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Username</th>
+              <th scope="col">Name</th>
+              <th scope="col">Ticket type</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody id="orders-body">
+            <!-- Aqui va las filas de JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+            <!-- Oli-->
 </body>
 </html>
