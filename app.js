@@ -65,9 +65,57 @@ function validateForm() {
   return valid;
 }
 
+// ---------- Pricing ----------
+const TICKET_PRICES = { Economico: 500, general: 800, vip: 1500 }; // MXN
+const IVA_RATE = 0.16;
+const INSURANCE_FEE = 150; // flat fee per order
+
+function calculateTotal(ticketType, quantity, hasInsurance) {
+  const subtotal = TICKET_PRICES[ticketType] * quantity;
+  const iva = subtotal * IVA_RATE;
+  const insurance = hasInsurance ? INSURANCE_FEE : 0;
+  return subtotal + iva + insurance;
+}
+
+const currency = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' });
+
+// ---------- Orders table ----------
+const ordersBody = document.getElementById('orders-body');
+
+function addOrderRow(order) {
+  const row = document.createElement('tr');
+  const values = [
+    order.username,
+    order.fullName,
+    order.ticketTypeLabel,
+    order.quantity,
+    currency.format(order.total),
+  ];
+  values.forEach((value) => {
+    const cell = document.createElement('td');
+    cell.textContent = value; // textContent avoids HTML injection
+    row.appendChild(cell);
+  });
+  ordersBody.appendChild(row);
+}
+
 // ---------- Submit ----------
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   if (!validateForm()) return;
-  console.log('Form is valid'); // placeholder: the order is registered in the next commit
+
+  const quantity = Number(fields.quantity.value);
+  const ticketType = fields.ticketType.value;
+  const ticketTypeLabel = fields.ticketType.options[fields.ticketType.selectedIndex].text;
+  const total = calculateTotal(ticketType, quantity, fields.insurance.checked);
+
+  addOrderRow({
+    username: fields.username.value.trim(),
+    fullName: fields.fullName.value.trim(),
+    ticketTypeLabel,
+    quantity,
+    total,
+  });
+
+  form.reset();
 });
