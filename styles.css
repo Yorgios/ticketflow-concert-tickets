@@ -322,3 +322,9 @@ tbody tr:hover {
     scroll-margin-top: 8.5rem;
   }
 }
+
+.error-message {
+  display: block;
+  color: #b00020;
+  margin-top: 0.25rem;
+}
